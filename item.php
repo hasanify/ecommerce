@@ -29,28 +29,28 @@ else
      echo "Sorry";
 }
 ?>
-<div style="display: block">
+<div class="container">
+<div class="row">
 <?php
-echo '<img style="float: left;" src="data:image/jpeg;base64,'.base64_encode($row['name'] ).'" height="400px" width="auto" class="img-thumnail" />';
-echo "<h1>";
+echo '<img style="float: left; margin-left: -20%;" src="data:image/jpeg;base64,'.base64_encode($row['name'] ).'" height="250px" width="auto" class="img-thumnail" />';
+echo "<h4>";
 echo $row['productname'];
-echo "</h1>";
-echo "<h2>Rs. ";
+echo "</h4><h5><b>";
+echo "Rs. ";
 echo $row['productcost'];
-echo "</h2><br><b>Product Description: </b><br>";
+echo "</b></h5><br><b>Product Description: </b><br>";
 echo $row['productdes'];
-echo "<hr>";
 if(isset($_SESSION["username"])){
-echo "<br><b><a href=addtocart.php?id=".$row['id'].">Add to cart</b></a>";
+echo "<br><b><i class='fa fa-shopping-cart'></i><a href=addtocart.php?id=".$row['id']."> Add to cart</b></a>";
 }
 else
 {
-  echo "<a href=login.php>Login</a> to add items to your cart and add your reviews.";
+  echo "<br><a href=login.php>Login</a> to add items to your cart and add your reviews.";
 }
 ?>
-</div>
-<div id="container" style="width: 70%; margin: 20px; display: block">
-<h3>Review Section: </h3>
+</div></div>
+<div style="padding: 20px">
+<h3><b>Item Reviews</b></h3>
 <?php
 $conn = mysqli_connect("localhost", "root", "albarkaat", "pubg");
 $ID = mysqli_real_escape_string($conn, $_GET['id']);
@@ -58,31 +58,36 @@ $sql = "SELECT * from review WHERE itemid = '$ID'";
 $query = mysqli_query($conn, $sql);
 while ($row = mysqli_fetch_array($query))
 {
-	echo "<div style='border: 1px solid black;'>";
-echo "<h1>";
+	echo "<div style='background-color: #f1f1f1; padding: 5px;'>";
+  echo "<div style='margin: 15px'>";
+echo "<h5>";
 echo $row['title'];
-echo "</h1>";
+echo "</h5>By <i><b>";
 echo $row['username'];
-echo "<br>";
+echo "</b></i> on ";
 echo date('d F, Y', strtotime($row['date'])); 
-echo "<br>";
+echo "<br><b>";
 echo $row['comment'];
+echo "</b></div>";
 echo "</div>";
-echo "<hr>";
 };
 ?>
+<hr>
+<br>
+
  <?php 
 $conn = mysqli_connect("localhost", "root", "albarkaat", "pubg");
 $ID = mysqli_real_escape_string($conn, $_GET['id']);
-$username = $_SESSION["username"];
  if(isset($_SESSION["username"])){
-  echo "Add review as ".$username. "<br>";
+ 	echo "<b>Add review:</b>";
   echo '
 <form method="post" action="review.php?id='.$ID.'">  
-<input placeholder="Title.." type="text" name="title" id="title" /> <br><br>
-<textarea placeholder="Your Comment.." type="text" name="comment" id="comment" /></textarea><br><br>
-<input type="submit" name="submit" id="submit" value="Add Review" class="btn btn-info" />  
+<input style="width: 50%" placeholder="Title.." type="text" name="title" id="title" /> <br><br>
+<textarea style="width: 50%; height: 100px; resize: none;" placeholder="Your Comment.." type="text" name="comment" id="comment" required /></textarea><br><br>
+<input style="background-color: black;" type="submit" name="submit" id="submit" value="Add Review" class="btn btn-info" />  
 </form>';
 }
 ?>
+</div>
 
+ <?php include 'footer.html'; ?>

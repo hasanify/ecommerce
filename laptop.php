@@ -9,8 +9,12 @@ include("auth.php");
 </head>
 <body>
   <?php include 'navigation.html'; ?>
-<center><br><br>
-  <h1>Laptops</h1>
+
+<div style="padding: 15px;">
+<h3>
+<i class="fa fa-laptop"></i> <span style="font-weight: bolder">Laptops</span>
+</h3>
+                
                 <table>  
                 <?php
                 $connect = mysqli_connect("localhost", "root", "albarkaat", "pubg");    
@@ -20,10 +24,10 @@ include("auth.php");
                 {  
                      echo '  
                           <tr>  
-                               <td>  
+                               <td style="width: 100px;">  
 <img src="data:image/jpeg;base64,'.base64_encode($row['name'] ).'" height="100px" width="auto" class="img-thumnail" />  
                                </td>
-  <td><a href="item.php?id='.$row['id']. '">'
+  <td style="text-align: left;"><a href="item.php?id='.$row['id']. '">'
                                   .$row['productname'].'</a><br>Rs. '.$row['productcost'].
                                '</td>
                           </tr>  
@@ -31,7 +35,7 @@ include("auth.php");
                 }  
                 ?>  
                 </table> 
-                </center> 
            </div>  
       </body>  
  </html>  
+ <?php include 'footer.html'; ?>

@@ -6,7 +6,7 @@ include("auth.php");
 include 'navigation.html';
 ?>
 
-<br><br><br>
+<div style="padding: 15px;">
 <?php
     $con= new mysqli("localhost","root","albarkaat","pubg");
     $name = $_POST['search'];
@@ -27,14 +27,17 @@ $result = mysqli_query($con, "SELECT * FROM tbl_images WHERE productname LIKE '%
 while ($row = mysqli_fetch_array($result))
 {        
         
-        echo "<br><br><h2>";
+        echo "<br><br>";
         echo '
-        <img style="float: left;" src="data:image/jpeg;base64,'.base64_encode($row['name'] ).'" height="100px" width="auto" class="img-thumnail" />';
-        echo "<a href=item.php?id=" .$row['id']. ">";
+        <img src="data:image/jpeg;base64,'.base64_encode($row['name'] ).'" height="100px" width="auto" class="img-thumnail" />';
+        echo "<b><a href=item.php?id=" .$row['id']. ">";
         echo $row['productname'];
-        echo "</a>";
+        echo "</a></b>";
         $no++;
 }
 
     mysqli_close($con);
 ?>
+</div>
+<br><br><br><br>
+ <?php include 'footer.html'; ?>

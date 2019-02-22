@@ -7,7 +7,6 @@ include 'navigation.html';
 <head>
 <meta charset="utf-8">
 <title>Registration</title>
-<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 <?php
@@ -33,15 +32,22 @@ VALUES ('$username', '".md5($password)."', '$email', '$trn_date')";
         }
     }else{
 ?>
+<div style="padding: 15px;">
 <div class="form">
-<h1>Registration</h1>
+<h4><i class="fa fa-id-card-o"></i> Register </h4>
 <form name="registration" action="" method="post">
+
 <input type="text" name="username" placeholder="Username" required />
 <input type="email" name="email" placeholder="Email" required />
 <input type="password" name="password" placeholder="Password" required />
-<input type="submit" name="submit" value="Register" />
+ <button style="background-color: #ba68c8" class="btn waves-effect waves-light" type="submit" name="submit">Submit
+    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+  </button>
+   Already registered? Login <a href="login.php">here</a>
 </form>
+</div>
 </div>
 <?php } ?>
 </body>
 </html>
+ <?php include 'footer.html'; ?>

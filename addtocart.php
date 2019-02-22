@@ -12,7 +12,7 @@ $row = mysqli_fetch_array($query);
 $userid = $_SESSION['username'];
 $productname = $row['productname'];
 $productcost = $row['productcost'];
-$cart = "INSERT INTO cart (userid, productname, productcost) VALUES ('$userid' , '$productname' , '$productcost')";
+$cart = "INSERT INTO cart (userid, productname, productid, productcost) VALUES ('$userid' , '$productname' , '$ID' , '$productcost')";
 mysqli_query($conn, $cart);
 header('location: item.php?id=' .$row['id']);
 }

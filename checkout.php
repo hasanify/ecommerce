@@ -48,6 +48,7 @@ echo $row['address'];
 ?>
 <br>
 Update your name and address <a href="profile.php">here.</a>
+ <?php include 'footer.html'; ?>
 
 
 

@@ -7,7 +7,6 @@ include 'navigation.html';
 <head>
 <meta charset="utf-8">
 <title>Login</title>
-<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 <?php
@@ -32,15 +31,20 @@ and password='".md5($password)."'";
 	}
     }else{
 ?>
+<div style="padding: 15px">
 <div class="form">
-<h1>Log In</h1>
+<h4><i class="fa fa-sign-in"></i> Log In </h4>
 <form action="" method="post" name="login">
-<input type="text" name="username" placeholder="Username" required />
-<input type="password" name="password" placeholder="Password" required />
-<input name="submit" type="submit" value="Login" />
+<input type="text" name="username" placeholder="Username" required autocomplete="off" />
+<input type="password" name="password" placeholder="Password" required autocomplete="off" />
+<button style="background-color: #ba68c8" class="btn waves-effect waves-light" type="submit" name="submit">Submit
+    <i class="fa fa-paper-plane" aria-hidden="true"></i>
+</button>
 </form>
 <p>Not registered yet? <a href='registration.php'>Register Here</a></p>
+</div>
 </div>
 <?php } ?>
 </body>
 </html>
+ <?php include 'footer.html'; ?>

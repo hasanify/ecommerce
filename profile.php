@@ -5,22 +5,30 @@ include("auth.php");
 
 <?php include 'navigation.html'; ?>
 <br>
+<div style="padding: 15px; text-align: center">
 <?php
 $conn = mysqli_connect("localhost", "root", "albarkaat", "pubg");
 $user = $_SESSION["username"];
 $sql = "SELECT * from users WHERE username = '$user'";
 $query = mysqli_query($conn, $sql);
 $row = mysqli_fetch_array($query);
-echo "Full Name: ";
+if (empty($row['profilepic'])) {
+	echo "<img src='default.png' height='200px'/>";
+}
+else {
+echo '<img src="data:image/jpeg;base64,'.base64_encode($row['profilepic'] ).'" height="200px" width="auto" class="img-thumnail" />';
+}
+echo "<br><br><b>";
+echo "Name:</b> ";
 echo $row['fname'];
-echo "<br>";
-echo "Username: ";
+echo "<b><br>";
+echo "Username: </b>";
 echo $row['username'];
-echo "<br>";
-echo "EMAIL ID: ";
+echo "<br><b>";
+echo "Email Address: </b>";
 echo $row['email'];
-echo "<br>";
-echo "Address: ";
+echo "<br><b>";
+echo "Address: </b>";
 echo $row['address'];
 ?>
 
@@ -49,7 +57,20 @@ echo $row['address'];
       	header('location: profile.php');
       }
  }
- ?>  
+ ?>
+  <?php 
+ $user = $_SESSION["username"];
+ $connect = mysqli_connect("localhost", "root", "albarkaat", "pubg");  
+ if(isset($_POST["updatepic"]))  
+ {    
+      $file = addslashes(file_get_contents($_FILES["profilepic"]["tmp_name"]));
+      $query = "UPDATE users SET profilepic = '$file' WHERE username = '$user'"; 
+      if(mysqli_query($connect, $query))  
+      {  
+      	header('location: profile.php');
+      }
+ }
+ ?>   
 <br><br>
  <!DOCTYPE html>
  <html>
@@ -57,16 +78,23 @@ echo $row['address'];
  	<title></title>
  </head>
  <body>
- 	Update Adress: <br>
- <form action="" method="post">
- 	<textarea style="width: 50%;height: 15%" name="address" placeholder="address" autocomplete="off"></textarea> 
+<br>
+ <form action="" method="post" class="col s12">
+ 	<textarea style="width: 50%;height: 15%; resize: none" name="address" placeholder="Address.." autocomplete="off"></textarea><br><br>
  	<input type="submit" name="updateaddress" value="Update Adress">
  </form>
- 	Update Name: <br>
-  <form action="" method="post">
- 	<input style="width: 50%;" type="text" name="fname" placeholder="full name" autocomplete="off">
+ <br>
+  <form action="" method="post" class="col s12">
+ 	<input style="width: 50%;" type="text" name="fname" placeholder="Full Name" autocomplete="off"><br><br>
  	<input type="submit" name="updatename" value="Update Name">
  </form>
+<br><br>
+  <form action="" method="post" class="col s12">
+ 	<input type="file" name="profilepic" id="image" /> 
+ 	<input type="submit" name="updatepic" value="Update Profile Picture">
+ </form>
+</div>
  </body>
  </html>
- 	
+
+ 	 <?php include 'footer.html'; ?>

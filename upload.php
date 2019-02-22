@@ -45,3 +45,4 @@ require_once 'admin/authenticate.php';
                 </div>
                 </body>
                 </html>  
+ <?php include 'footer.html'; ?>
