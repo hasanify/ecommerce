@@ -63,7 +63,7 @@ echo $row['address'];
  $connect = mysqli_connect("localhost", "root", "albarkaat", "pubg");  
  if(isset($_POST["updatepic"]))  
  {    
-      $file = addslashes(file_get_contents($_FILES["profilepic"]["tmp_name"]));
+      $file = addslashes(file_get_contents($_FILES["image"]["tmp_name"])); 
       $query = "UPDATE users SET profilepic = '$file' WHERE username = '$user'"; 
       if(mysqli_query($connect, $query))  
       {  
@@ -90,7 +90,7 @@ echo $row['address'];
  </form>
 <br><br>
   <form action="" method="post" class="col s12">
- 	<input type="file" name="profilepic" id="image" /> 
+ 	<input type="file" name="image" id="image" /> 
  	<input type="submit" name="updatepic" value="Update Profile Picture">
  </form>
 </div>
