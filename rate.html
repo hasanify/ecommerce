@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+	<input style="float: left; width: 30%; margin: 10px" type="range" step="0.1" min="1" max="5" value="1" class="slider" id="myRange" name="stars">
+	<div style="font-weight: bolder;" id="starvalue"></div>
+	<script>
+		var slider = document.getElementById("myRange");
+		var output = document.getElementById("starvalue");
+output.innerHTML = slider.value; // Display the default slider value
+
+// Update the current slider value (each time you drag the slider handle)
+slider.oninput = function() {
+	output.innerHTML = this.value;
+}
+</script>
+</body>
+</html>

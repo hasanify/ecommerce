@@ -23,7 +23,9 @@ and password='".md5($password)."'";
 	$rows = mysqli_num_rows($result);
         if($rows==1){
 	    $_SESSION['username'] = $username;
-	    header("Location: index.php");
+	    echo "<script>";
+	    echo "history.go(-2)";
+	    echo "</script>";
          }else{
 	echo "<div class='form'>
 <h3>Username/password is incorrect.</h3>
@@ -37,7 +39,7 @@ and password='".md5($password)."'";
 <form action="" method="post" name="login">
 <input type="text" name="username" placeholder="Username" required autocomplete="off" />
 <input type="password" name="password" placeholder="Password" required autocomplete="off" />
-<button style="background-color: #ba68c8" class="btn waves-effect waves-light" type="submit" name="submit">Submit
+<button style="background-color: #2979ff " class="btn waves-effect waves-light" type="submit" name="submit">Submit
     <i class="fa fa-paper-plane" aria-hidden="true"></i>
 </button>
 </form>

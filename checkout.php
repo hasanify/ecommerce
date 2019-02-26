@@ -5,6 +5,7 @@ include 'head.php';
 include 'db.php';
 ?>
 <?php
+if(isset($_SESSION["username"])){
 $userid = $_SESSION['username'];
 $sql = "SELECT * from cart where userid = '$userid'";
 $query = mysqli_query($con, $sql);
@@ -20,7 +21,7 @@ $sql = "SELECT SUM(productcost) AS totalcost FROM cart where userid = '$userid'"
 $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($result); 
 $sum = $row['totalcost'];
-echo ("with the total cost of Rs. ".$sum);
+echo ("with the total cost of Rs. ".number_format($sum));  //number_format($row['productcost'])
 echo ".<hr></h3>";
 $conn= new mysqli("localhost","root","albarkaat","pubg");
 $sql = "SELECT * from cart where userid = '$userid'";
@@ -30,7 +31,7 @@ while ($row = mysqli_fetch_array($query))
 {        
         echo "Product Name: " .$row['productname'];
         echo "<br>";
-        echo "Product Cost: Rs. " .$row['productcost'];
+        echo "Product Cost: Rs. " .number_format($row['productcost']);
         echo "<br><hr>";
 }
 ?>
@@ -47,7 +48,17 @@ echo "Delivery Address:<br>";
 echo $row['address'];
 ?>
 <br>
-Update your name and address <a href="profile.php">here.</a>
+Update your name and address <a href="profile.php"><b>here.</b></a><br>
+<a href="phpmailer/place.php"><b>Place Order</b></a>
+</div>
+<?php
+}
+else
+{
+	header('location: index.php');
+}
+
+?>
  <?php include 'footer.html'; ?>
 
 

@@ -7,6 +7,7 @@ include("auth.php");
 <br>
 <div style="padding: 15px; text-align: center">
 <?php
+if(isset($_SESSION["username"])){
 $conn = mysqli_connect("localhost", "root", "albarkaat", "pubg");
 $user = $_SESSION["username"];
 $sql = "SELECT * from users WHERE username = '$user'";
@@ -70,7 +71,12 @@ echo $row['address'];
       	header('location: profile.php');
       }
  }
- ?>   
+}
+else
+{
+  header('location: index.php');
+}
+?>   
 <br><br>
  <!DOCTYPE html>
  <html>
@@ -89,7 +95,7 @@ echo $row['address'];
  	<input type="submit" name="updatename" value="Update Name">
  </form>
 <br><br>
-  <form action="" method="post" class="col s12">
+  <form action="" method="post" class="col s12" enctype="multipart/form-data">
  	<input type="file" name="image" id="image" /> 
  	<input type="submit" name="updatepic" value="Update Profile Picture">
  </form>

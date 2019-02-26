@@ -23,9 +23,18 @@ while ($row = mysqli_fetch_array($query))
         $no++;
 }
 if ($no>0) {
+        if ($no == 1) {
+echo "<br><br><h3>";
+echo "&nbsp;&nbsp;There is ".$no. " item in your cart";
+echo "</h3>";  
+        }
+        else 
+        {
 echo "<br><br><h3>";
 echo "&nbsp;&nbsp;There are ".$no. " items in your cart";
-echo "</h3>";
+echo "</h3>";      
+        }
+
 $conn= new mysqli("localhost","root","albarkaat","pubg");
 $sql = "SELECT * from cart where userid = '$userid'";
 $query = mysqli_query($conn, $sql);
@@ -34,10 +43,11 @@ while ($row = mysqli_fetch_array($query))
 {        
         echo "<b>Product Name:</b> <a href=item.php?id=".$row['productid'].">". $row['productname']."</a>";
         echo "<span style='float: right;'>";
-        echo "</i><a href=remove.php?id=" .$row['id']. "><i style='color: red;' class='fa fa-times fa-3x'></i></a></span>";
+        echo "</i><a href=remove.php?id=" .$row['id']. "><i title='Remove Item' style='color: red;' class='fa fa-times fa-3x'></i></a></span>";
         echo "<br>";
-        echo "<b>Product Cost:</b> Rs. " .$row['productcost'];
+        echo "<b>Product Cost:</b> Rs. " .number_format($row['productcost']);
         echo "<hr>";
+
 }
 
 $conn= new mysqli("localhost","root","albarkaat","pubg");
@@ -50,11 +60,12 @@ $row = mysqli_fetch_assoc($result);
 
 $sum = $row['totalcost'];
 
-echo ("Your total cost = Rs. ".$sum);
+echo ("Your total cost = Rs. ".number_format($sum));
 
 echo "<br>";
 
-echo "<a href=checkout.php>Proceed to checkout</a><i class='far fa-hand-point-right'></i>";
+echo "<b> <a href=checkout.php>Proceed to checkout</a> <i class='fa fa-hand-o-right fa-1x'></i> </b>";
+        echo "</div>";
 }
 else
 {

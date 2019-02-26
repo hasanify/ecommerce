@@ -3,12 +3,18 @@
 <head>
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.css">
+  <style type="text/css">
+    .btn:hover
+    {
+      background-color: #1f1f1f;
+    }
+  </style>
 </head>
 <body>
-
-
   <nav>
-    <div class="nav-wrapper" style="background-color: #9c27b0">
+    <div class="nav-wrapper" style="background-color: #2196f3 ">
       <a href="index.php" class="brand-logo right"><i class="fa fa-shopping-bag"></i><b>eCommerce</b></a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li><a href="index.php"><i class="fa fa-home fa-1x"></i> Home</a></li>
@@ -19,7 +25,7 @@
     </div>
   </nav>
     <nav>
-    <div class="nav-wrapper" style="background-color: #ba68c8">
+    <div class="nav-wrapper" style="background-color: #64b5f6">
       <form action="search.php" method="post">
         <div class="input-field">
           <input placeholder="Search.." id="search" type="search" name="search" autocomplete="off">
@@ -28,5 +34,24 @@
       </form>
     </div>
   </nav>
+  <i id="scrolltopbtn" style="display: none; position: fixed; bottom: 20px; right: 30px; outline: none;" onclick="topFunction()" class="fa fa-chevron-circle-up fa-3x" title="Back to Top"></i>
+  <script>
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    document.getElementById("scrolltopbtn").style.display = "block";
+  } else {
+    document.getElementById("scrolltopbtn").style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
 </body>
 </html>

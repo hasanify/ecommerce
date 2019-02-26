@@ -2,6 +2,8 @@
 session_start();
 if(session_destroy())
 {
-header("Location: index.php");
+echo "<script>";
+echo "history.go(-1)";
+echo "</script>";
 }
 ?>
