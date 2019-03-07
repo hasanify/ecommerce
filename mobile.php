@@ -57,8 +57,9 @@ include("auth.php");
 
 </head>
 <body>
-  <?php include 'navigation.html'; ?>
-  <?php include 'filternav.php'; ?>
+  <?php include 'navigation.html';
+  include 'widget.html'; ?>
+  <?php //include 'filternav.php'; ?>
 
 <div style="padding: 15px;">
 <h3>

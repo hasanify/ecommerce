@@ -67,7 +67,8 @@ include("auth.php");
 
           </head>
           <body>
-            <?php include 'navigation.html'; ?>
+            <?php include 'navigation.html';
+            include 'widget.html'; ?>
 
             <div style="padding: 15px;">
               <h3>
@@ -107,29 +108,29 @@ include("auth.php");
   };
   ?>
   <div style=" position: fixed; bottom: 20px; left: 30px; outline: none;">
-  <b>Pages:</b>
-  <?php 
-  $sql = "SELECT COUNT(id) FROM tbl_images"; 
-  $rs_result = mysqli_query($con, $sql); 
-  $row = mysqli_fetch_row($rs_result); 
-  $total_records = $row[0]; 
+    <b>Pages:</b>
+    <?php 
+    $sql = "SELECT COUNT(id) FROM tbl_images"; 
+    $rs_result = mysqli_query($con, $sql); 
+    $row = mysqli_fetch_row($rs_result); 
+    $total_records = $row[0]; 
 
     // Number of pages required. 
-  $total_pages = ceil($total_records / $limit); 
-  $pagLink = "";             
-  for ($i=1; $i<=$total_pages; $i++) { 
-    if ($i==$pn) { 
-      $pagLink .= "<button style='background-color: red; border-radius: 50%; margin: 5px' class='btn'><a href='index.php?page="
-      .$i."'>".$i."</a></button>"; 
-    }      
-    else { 
-      $pagLink .= "<button style='margin: 5px; color: white; border-radius: 50%' class='btn'><a href='index.php?page=".$i."'> 
-      ".$i."</a></button>"; 
-    } 
-  }; 
-  echo $pagLink;
-  ?>
-</div>  
+    $total_pages = ceil($total_records / $limit); 
+    $pagLink = "";             
+    for ($i=1; $i<=$total_pages; $i++) { 
+      if ($i==$pn) { 
+        $pagLink .= "<button style='background-color: red; border-radius: 50%; margin: 5px'><a href='index.php?page="
+        .$i."'>".$i."</a></button>"; 
+      }      
+      else { 
+        $pagLink .= "<button style='margin: 5px; color: white; border-radius: 50%; background-color: black;'><a href='index.php?page=".$i."'> 
+        ".$i."</a></button>"; 
+      } 
+    }; 
+    echo $pagLink;
+    ?>
+  </div>  
 </div>
 </div>  
 </body>  

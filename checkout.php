@@ -1,6 +1,7 @@
 <?php
 include 'auth.php';
 include 'navigation.html';
+include 'widget.html';
 include 'head.php';
 include 'db.php';
 ?>
@@ -15,8 +16,11 @@ while ($row = mysqli_fetch_array($query))
         $no++;
 }
 echo "<br><br><h3>";
-
-echo "&nbsp;&nbsp;Checking out ".$no. " items ";
+if ($no == 1) {
+	echo "&nbsp;&nbsp;Checking out ".$no. " item ";
+}
+else{
+echo "&nbsp;&nbsp;Checking out ".$no. " items ";}
 $sql = "SELECT SUM(productcost) AS totalcost FROM cart where userid = '$userid'";
 $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($result); 
@@ -41,7 +45,7 @@ $user = $_SESSION['username'];
 $sql = "SELECT * FROM users where username = '$user'" ;
 $result = mysqli_query($con, $sql);
 $row = mysqli_fetch_assoc($result);
-echo "Item will be delivered to:<br>";
+echo "Order will be delivered to:<br>";
 echo $row['fname'];
 echo "<br>";
 echo "Delivery Address:<br>";

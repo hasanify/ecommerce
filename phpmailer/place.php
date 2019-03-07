@@ -1,21 +1,21 @@
+
 <?php
 include("../auth.php");
 include '../head.php';
 if(isset($_SESSION["username"])){
-$conn = mysqli_connect("localhost", "root", "albarkaat", "pubg");
-$user = $_SESSION["username"];
-$sql = "SELECT * from users WHERE username = '$user'";
-$query = mysqli_query($conn, $sql);
-$row = mysqli_fetch_array($query);
-$email = $row['email'];
-$address = $row['address'];
-$fname = $row['fname'];
-}
-
-    //$conn = mysqli_connect("localhost", "root", "albarkaat", "pubg");
-    $sql = "SELECT * from cart WHERE userid = '$user' ";
+    $conn = mysqli_connect("localhost", "root", "albarkaat", "pubg");
+    $user = $_SESSION["username"];
+    $sql = "SELECT * from users WHERE username = '$user'";
     $query = mysqli_query($conn, $sql);
-    while($row = mysqli_fetch_array($query)){
+    $row = mysqli_fetch_array($query);
+    $email = $row['email'];
+    $address = $row['address'];
+    $fname = $row['fname'];
+}
+//$conn = mysqli_connect("localhost", "root", "albarkaat", "pubg");
+$sql = "SELECT * from cart WHERE userid = '$user' ";
+$query = mysqli_query($conn, $sql);
+while($row = mysqli_fetch_array($query)){
 
     $item = $row['productname'];
 
@@ -43,13 +43,12 @@ use PHPMailer\PHPMailer\Exception;
 require 'src/Exception.php';
 require 'src/PHPMailer.php';
 require 'src/SMTP.php';
-
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 try {
     //Server settings
     $mail->SMTPDebug = 0;                                 // Enable verbose debug output
     $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+    $mail->Host = 'smtp.gmail.com';                       // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
     $mail->Username = 'esportsnoreply@gmail.com';         // SMTP username
     $mail->Password = 'arsal@n123';                       // SMTP password
@@ -59,9 +58,9 @@ try {
     //Recipients
     $mail->setFrom('esportsnoreply@gmail.com', 'eCommerce');
     $mail->addAddress($email, $user);     // Add a recipient
-  
+
     $mail->Subject = 'Order Placed';
-    $mail->Body    = 'Your order for: <b><ul><li>'.$groupConcat.'</li></ul></b> has been placed.<br> Your order ID is <b>' .$orderid.'.</b><br> Order will be delivered to: <b>'.$fname. '</b><br> Address:<b>' .$address. '.</b>';
+    $mail->Body    = 'Your order for: <b><ul><li>'.$groupConcat.'</li></ul></b> has been placed.<br> Your order ID is <b>' .$orderid.'.</b><br> Order will be delivered to: <b>'.$fname. '</b><br> Address: <b>' .$address. '.</b>';
     $mail->IsHTML(true);
 
 
@@ -77,4 +76,5 @@ $user = $_SESSION["username"];
 $sql = "DELETE FROM cart WHERE userid = '$user'";
 $query = mysqli_query($conn, $sql);
 header('location: ../index.php');
+?>
 

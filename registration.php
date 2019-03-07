@@ -1,6 +1,7 @@
 <?php include 'head.php'; ?>
 <?php
 include 'navigation.html';
+include 'widget.html';
 ?>
 <!DOCTYPE html>
 <html>

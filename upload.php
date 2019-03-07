@@ -2,7 +2,8 @@
 require_once 'admin/authenticate.php';
 ?>
 <?php include 'head.php'; ?>
-<?php include 'navigation.html'; ?>
+<?php include 'navigation.html';
+include 'widget.html'; ?>
 <?php  
 $connect = mysqli_connect("localhost", "root", "albarkaat", "pubg");  
 if(isset($_POST["insert"]))  

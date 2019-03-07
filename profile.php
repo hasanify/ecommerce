@@ -3,7 +3,8 @@
 include("auth.php");
 ?>
 
-<?php include 'navigation.html'; ?>
+<?php include 'navigation.html';
+include 'widget.html'; ?>
 <br>
 <div style="padding: 15px; text-align: center">
 <?php
@@ -55,7 +56,7 @@ echo $row['address'];
       $query = "UPDATE users SET fname = '$fname' WHERE username = '$user'"; 
       if(mysqli_query($connect, $query))  
       {  
-      	header('location: profile.php');
+      	//header('location: profile.php');
       }
  }
  ?>
