@@ -1,5 +1,7 @@
 <?php
-include("auth.php");
+include 'auth.php';
+include 'widget.html';
+include 'head.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,28 +49,12 @@ include("auth.php");
                   box-shadow:  4px 4px 4px rgba(0,0,0,0.7) !important;
                   background-color: rgba(0,0,0,0.1) !important;
                 }
-                .pagination
-                {
-                 background-color: black !important;
-                 color: white !important;
-                 transition: 0.3s !important;
-               }
-               .pagination:hover
-               {
-                 background-color: #1f1f1f;
-               }
-               .active
-               {
-                background-color: #64b5f6 !important;
-              }
-
             </style>
-            <?php include 'head.php'; ?>
+            
 
           </head>
           <body>
-            <?php include 'navigation.html';
-            include 'widget.html'; ?>
+           
 
             <div style="padding: 15px;">
               <h3>
@@ -78,7 +64,7 @@ include("auth.php");
   // Import the file where we defined the connection to Database. 
                 require_once "connection.php"; 
 
-  $limit = 10; // Number of entries to show in a page. 
+  $limit = 20; // Number of entries to show in a page. 
   // Look for a GET variable page if not found default is 1.   
   if (isset($_GET["page"])) { 
     $pn = $_GET["page"]; 
@@ -100,15 +86,16 @@ include("auth.php");
     ?>
     <?php
     $ID = $row['id'];  
-    echo '<div class="col s12 m5" style="float: left; margin-left: 10px">';
+    echo '<div class="col s10 m5" style="float: left; margin-left: 10px">';
     echo '<div style="width: 300px; height: 260px;" class="card-panel">';
     echo '<center><div class="round"><img style="background-color: white" width="150px" src="data:image/jpeg;base64,'.base64_encode($row['name'] ).'"/></div><br>';
     echo '<b><a title="'.$row['productname'].'" href="item.php?id=' .$row['id']. '"><span class="text-concat">'.$row['productname'] .'</span></a><br>Rs. ' .number_format($row['productcost']);
     echo '</center></b></div></div>';
   };
   ?>
+  <div class="z-depth-5">
   <div style=" position: fixed; bottom: 20px; left: 30px; outline: none;">
-    <b>Pages:</b>
+    <ul class='pagination'>
     <?php 
     $sql = "SELECT COUNT(id) FROM tbl_images"; 
     $rs_result = mysqli_query($con, $sql); 
@@ -120,17 +107,17 @@ include("auth.php");
     $pagLink = "";             
     for ($i=1; $i<=$total_pages; $i++) { 
       if ($i==$pn) { 
-        $pagLink .= "<button style='background-color: red; border-radius: 50%; margin: 5px'><a href='index.php?page="
-        .$i."'>".$i."</a></button>"; 
+        $pagLink .= "<li class='active'><a href='index.php?page=".$i."'>".$i."</a></li>"; 
       }      
       else { 
-        $pagLink .= "<button style='margin: 5px; color: white; border-radius: 50%; background-color: black;'><a href='index.php?page=".$i."'> 
-        ".$i."</a></button>"; 
+        $pagLink .= "<li style='background-color: white' class='waves-effect'><a href='index.php?page=".$i."'>".$i."</a></li>";
       } 
     }; 
     echo $pagLink;
     ?>
+  </ul>
   </div>  
+</div>
 </div>
 </div>  
 </body>  

@@ -75,6 +75,7 @@ $conn = mysqli_connect("localhost", "root", "albarkaat", "pubg");
 $user = $_SESSION["username"];
 $sql = "DELETE FROM cart WHERE userid = '$user'";
 $query = mysqli_query($conn, $sql);
-header('location: ../index.php');
+echo "Order placed. Click <a href='index.php'> here </a> to see your orders.";
+//header('location: ../index.php');
 ?>
 

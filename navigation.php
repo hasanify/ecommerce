@@ -1,3 +1,14 @@
+<?php
+$username = $_SESSION["username"];
+$conn = new mysqli("localhost","root","albarkaat","pubg");
+$query = "SELECT * from cart where userid = '$username'";
+$result = mysqli_query($conn,$query);
+$no = 0;
+while ( $row = mysqli_fetch_array($result))
+{
+  $no++;
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,37 +33,6 @@
 {
   z-index: 4000; 
 }
-.fixed
-  {
-    position: fixed !important;
-    margin-top: 60px;
-    z-index: 999999;
-    opacity: 0.5;
-    transition: .3s;
-    padding-left: 10px;
-  }
-    .fixed:hover
-  {
-    opacity: 1;
-  }
-  input[type=search] {
-    border-bottom: 2px solid rgba(0,0,0,0.5) !important;
-    background-color: white !important;
-    background-image: url(search.png) !important;
-    background-position: 5px center !important;
-    background-repeat: no-repeat !important;
-    background-size: 24px 24px !important;
-    width: 200px !important;
-    transition: .3s !important;
-    color: transparent !important;
-    padding-left: 35px !important;
-    border-radius: 50px !important;
-  }
-  input[type=search]:hover {
-    background-color: #fff !important;
-    cursor: text !important;
-    color: black !important;
-  }
 </style>
 </head>
 <body>
@@ -64,31 +44,37 @@
       </h4>
       <a href="#" data-activates="mobile-demo" class="button-collapse"><span class="fa fa-bars fa-2x"></span></a>
       <ul class="right hide-on-med-and-down">
-
         <li><a href="desktop.php"><i class='fa fa-desktop fa-1x'></i> Desktop PCs</a></li>
         <li><a href="laptop.php"><i class='fa fa-laptop fa-1x'></i> Laptops</a></li>
         <li><a href="mobile.php"><i class='fa fa-mobile fa-1x'></i> Mobiles</a></li>
-        <li><a href="login.php"><i class='fa fa-sign-in fa-1x'></i> Login</a></li>
-        <li><a href="registration.php"><i class='fa fa-id-card fa-1x'></i> SignUp</a></li>
+        <li><a href="" class="dropdown-button" data-activates="dropdown1"><i class="fa fa-user fa-1x"></i> <?php echo $username; ?></a></li>
       </ul>
       <ul class="side-nav" id="mobile-demo">
         <li><a href="index.php"><i class='fa fa-home fa-2x'></i> <b>Home</b> </a></li>
         <li><a href="desktop.php"><i class='fa fa-desktop fa-1x'></i> Desktop PCs</a></li>
         <li><a href="laptop.php"><i class='fa fa-laptop fa-1x'></i> Laptops</a></li>
         <li><a href="mobile.php"><i class='fa fa-mobile fa-2x'></i> Mobiles</a></li>
-        <li><a href="login.php"> <i class='fa fa-sign-in fa-1x'></i> Login</a></li>
-        <li><a href="registration.php"><i class='fa fa-id-card fa-1x'></i> SignUp</a></li>
+        <hr>
+        <b style="color: black; font-size: x-large; padding-left: 10px;">
+
+        <?php echo $username; ?>
+        </b>
+        <hr>
+        <li><a href="orders.php">My Orders</a></li>
+        <li><a href="cart.php">My Cart <b>[<?php echo $no; ?>]</b></a></li>
+        <li><a href="registration.php">My Profile</a></li>
+        <li><a href="logout.php">Logout</a></li>
       </ul>
     </div>
   </nav>
 </div>
-<div class="fixed">
-  <form action="search.php" method="post">
-    <div class="input-field">
-      <input placeholder="Search for products.." id="skill_input" type="search" name="search" autocomplete="off">
-    </div>
-  </form>
-</div>
+<ul id="dropdown1" class="dropdown-content" style=" overflow: hidden; display: hidden; padding-right: 10px">
+  <li style="width: 200px; overflow: hidden;"><a href="orders.php">My Orders</a></li>
+  <li style="width: 200px; overflow: hidden;"><a href="cart.php">My Cart <b>[<?php echo $no; ?>]</b></a></li>
+  <li style="width: 200px; overflow: hidden;"><a href="registration.php">My Profile</a></li>
+  <li style="width: 200px; overflow: hidden;"><a href="logout.php">Logout</a></li>
+</ul>
+<?php include 'search.html'; ?>
 <i id="scrolltopbtn" style="display: none; position: fixed; bottom: 20px; right: 30px; outline: none;" onclick="topFunction()" class="fa fa-chevron-circle-up fa-3x" title="Back to Top"></i>
 <script>
 // When the user scrolls down 20px from the top of the document, show the button
@@ -123,11 +109,26 @@ function topFunction() {
     }
   }
 </script>
+
+
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
 
 <script>
   $(".button-collapse").sideNav();
+</script>
+<script>
+  (function($) {
+  $(function() {
+    $('.dropdown-button').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      hover: true, // Activate on hover
+      belowOrigin: true, // Displays dropdown below the button
+      alignment: 'right' // Displays dropdown with edge aligned to the left of button
+    });
+  }); // End Document Ready
+})(jQuery);
 </script>
 </body>
 </html>

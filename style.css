@@ -1,46 +1,43 @@
-body {
-     font-family:Arial, Sans-Serif;
+.segment {
+    height: 100vh;
+    width: 100%;
+    background-color:aquamarine;
 }
-.clearfix:before, .clearfix:after{
-     content: "";
-     display: table;
+
+.divide {
+    height: 50vh;
+    width: 100%;
 }
-.clearfix:after{
-     clear: both;
+
+#hero {
+    background-image: url('resources/images/hero%20header.png');
+    background-size: auto 100vh;
+    background-position: center;
 }
-a{
-     color:#0067ab;
-     text-decoration:none;
+
+.bpblue-text {
+    color: #21A1EC;
 }
-a:hover{
-     text-decoration:underline;
+
+#nav-mobile>li>a {
+    color: #21A1EC;
 }
-.form{
-     width: 300px;
-     margin: 0 auto;
+
+#voice-circle {
+    width: 30%;
+    height: auto;
 }
-input[type='text'], input[type='email'],
-input[type='password'] {
-     width: 200px;
-     border-radius: 2px;
-     border: 1px solid #CCC;
-     padding: 10px;
-     color: #333;
-     font-size: 14px;
-     margin-top: 10px;
+
+.hero-btn {
+    margin: 10px;
+    width: 300px;
 }
-input[type='submit']{
-     padding: 10px 25px 8px;
-     color: #fff;
-     background-color: #0067ab;
-     text-shadow: rgba(0,0,0,0.24) 0 1px 0;
-     font-size: 16px;
-     box-shadow: rgba(255,255,255,0.24) 0 2px 0 0 inset,#fff 0 1px 0 0;
-     border: 1px solid #0164a5;
-     border-radius: 2px;
-     margin-top: 10px;
-     cursor:pointer;
+
+#hero-content {
+    width: 100%;
+    height: 100vh;
 }
-input[type='submit']:hover {
-     background-color: #024978;
+
+#hero-child {
+    width: 100%;
 }

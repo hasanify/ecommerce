@@ -1,10 +1,8 @@
-<?php include 'head.php'; ?>
 <?php
-include("auth.php");
+include 'auth.php';
+include 'widget.html';
+include 'head.php';
 ?>
-
-<?php include 'navigation.html';
-include 'widget.html'; ?>
 <br>
 <div style="padding: 15px; text-align: center">
 <?php

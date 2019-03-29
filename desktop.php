@@ -1,5 +1,7 @@
 <?php
-include("auth.php");
+include 'auth.php';
+include 'widget.html';
+include 'head.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,12 +55,6 @@ include("auth.php");
 }
 
         </style>
-   <?php include 'head.php'; ?>
-
-</head>
-<body>
-  <?php include 'navigation.html';
-  include 'widget.html'; ?>
 
 <div style="padding: 15px;">
 <h3>

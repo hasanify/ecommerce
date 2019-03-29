@@ -2,14 +2,10 @@
 error_reporting(0);
 ?>
 <?php
-include("auth.php");
-?>
-<?php include 'head.php'; ?>
-<?php
-include 'navigation.html';
+include 'auth.php';
 include 'widget.html';
+include 'head.php';
 ?>
-<br><br><br>
 <?php
 
 if(isset($_SESSION["username"])){
@@ -30,11 +26,11 @@ if(isset($_SESSION["username"])){
                 }
                 else 
                 {
-                        echo "<br><br><h3>";
+                        echo "<h3>";
                         echo "&nbsp;&nbsp;There are ".$no. " items in your cart";
                         echo "</h3>";      
                 }
-
+                //echo '<div class="round"><img style="background-color: white" width="50px" src="data:image/jpeg;base64,'.base64_encode($row['productimage'] ).'"/></div>';
                 $conn= new mysqli("localhost","root","albarkaat","pubg");
                 $sql = "SELECT * from cart where userid = '$userid'";
                 $query = mysqli_query($conn, $sql);
@@ -60,7 +56,7 @@ if(isset($_SESSION["username"])){
 
                 $sum = $row['totalcost'];
 
-                echo ("Your total cost = Rs. ".number_format($sum));
+                echo ("Your total cost = <b>Rs. ".number_format($sum)."</b>");
 
                 echo "<br>";
 

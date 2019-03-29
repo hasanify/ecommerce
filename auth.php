@@ -3,10 +3,11 @@ session_start();
 if(!isset($_SESSION["username"])){
 //$value = $_SESSION["username"];
 //setcookie("usernamelog", $value);
-	include 'log-.html';
+	include 'navigation.html';
 }
 else
 {
-	include 'log.php';
+	include 'navigation.php';
 }
+error_reporting(0);
 ?>

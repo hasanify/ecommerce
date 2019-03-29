@@ -3,12 +3,9 @@
 error_reporting(0);
 ?>
 <?php
-include("auth.php");
-?>
-<?php include 'head.php'; ?>
-<?php
-include 'navigation.html';
+include 'auth.php';
 include 'widget.html';
+include 'head.php';
 ?>
 <br><br><br>
 <?php

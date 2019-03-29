@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	.fixed
+	{
+		position: fixed !important;
+		margin-top: 60px;
+		z-index: 999999;
+		opacity: 0.5;
+		transition: .3s;
+		padding-left: 10px;
+	}
+		.fixed:hover
+	{
+		opacity: 1;
+	}
+	input[type=search] {
+		border-bottom: 2px solid rgba(0,0,0,0.5) !important;
+		background-color: white !important;
+		background-image: url(search.png) !important;
+		background-position: 5px center !important;
+		background-repeat: no-repeat !important;
+		background-size: 24px 24px !important;
+		width: 200px !important;
+		transition: .3s !important;
+		color: transparent !important;
+		padding-left: 35px !important;
+		border-radius: 50px !important;
+	}
+	input[type=search]:hover {
+		background-color: #fff !important;
+		cursor: text !important;
+		color: black !important;
+	}
+</style>
+</head>
+<body>
+<div class="fixed">
+	<form action="search.php" method="post">
+		<div class="input-field">
+			<input placeholder="Search for products.." id="skill_input" type="search" name="search" autocomplete="off">
+		</div>
+	</form>
+</div>
+</div>
+<!--end layout-widget-wrapper -->
+</div>
+</body>
+</html>

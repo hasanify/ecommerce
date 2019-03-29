@@ -1,7 +1,7 @@
-<?php include 'head.php'; ?>
 <?php
-include 'navigation.html';
+include 'auth.php';
 include 'widget.html';
+include 'head.php';
 ?>
 <!DOCTYPE html>
 <html>
